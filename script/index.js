@@ -71,8 +71,9 @@ const showCategory = (categories) => {
 const plantsByCategory = getElement('plant-container')
 
 const loadPlantsByCategory = (categoryId) => {
+    console.log(categoryId)
     manageSpinner(true)
-    fetch(`https://openapi.programming-hero.com/api/category/${categoryId}`)
+    fetch(categoryId?`https://openapi.programming-hero.com/api/category/${categoryId}`:`https://openapi.programming-hero.com/api/plants`)
     .then(res => res.json())
     .then(data => {
 
@@ -110,22 +111,22 @@ const showLoadPlantsByCategory = (trees) => {
     trees.forEach(tree => {
         plantsByCategory.innerHTML += `
                     
-                        <div id="${tree.id}" class="card bg-base-100 shadow-sm p-3">
-                        <figure onclick ="loadPlantDetail(${tree.id})" class="p-2">
+                        <div id="${tree.id}" class="card bg-base-100 shadow-sm md:p-3">
+                        <figure onclick ="loadPlantDetail(${tree.id})" class="md:p-2">
                             <img
                             src="${tree.image}"
                             class="rounded-xl h-32 w-full object-cover" />
                         </figure>
                         <div onclick ="loadPlantDetail(${tree.id})" class="card-body items-center text-center">
                             <h2 class="card-title">${tree.name}</h2>
-                            <p>${tree.description}</p>
+                            <p class="text-xs">${tree.description}</p>
                         </div>
-                        <div onclick ="loadPlantDetail(${tree.id})" class="flex justify-between items-center p-5">
+                        <div onclick ="loadPlantDetail(${tree.id})" class="flex justify-around items-center md:p-5">
                             <h1 class="text-[#15803D] bg-[#DCFCE7] rounded-full p-2 font-semibold">${tree.category}</h1>
                             <h1 class="font-semibold">৳${tree.price}</h1>
                         </div>
                             <div class="card-actions">
-                                <button class="btn w-full bg-[#15803D] text-white">Add to Card</button>
+                                <button class="btn w-full bg-[#15803D] text-white p-1 rounded-full">Add to Card</button>
                             </div>
                         </div>
                     
@@ -149,22 +150,22 @@ const showLoadAllPlants = (trees) =>{
     trees.forEach(tree => {
         plantsByCategory.innerHTML += `
                     
-                        <div id="${tree.id}" class="card bg-base-100 shadow-sm p-3">
-                        <figure onclick ="loadPlantDetail(${tree.id})" class="p-2">
+                        <div id="${tree.id}" class="card bg-base-100 shadow-sm md:p-3">
+                        <figure onclick ="loadPlantDetail(${tree.id})" class="md:p-2">
                             <img
                             src="${tree.image}"
                             class="rounded-xl h-32 w-full object-cover" />
                         </figure>
                         <div onclick ="loadPlantDetail(${tree.id})" class="card-body items-center text-center">
                             <h2 class="card-title">${tree.name}</h2>
-                            <p>${tree.description}</p>
+                            <p class="text-xs">${tree.description}</p>
                         </div>
-                        <div onclick ="loadPlantDetail(${tree.id})" class="flex justify-between items-center p-5">
+                        <div onclick ="loadPlantDetail(${tree.id})" class="flex justify-between items-center md:p-5">
                             <h1 class="text-[#15803D] bg-[#DCFCE7] rounded-full p-2 font-semibold">${tree.category}</h1>
                             <h1 class="font-semibold">৳${tree.price}</h1>
                         </div>
                             <div class="card-actions">
-                                <button class="btn w-full bg-[#15803D] text-white">Add to Card</button>
+                                <button class="btn w-full bg-[#15803D] text-white p-1 rounded-full">Add to Card</button>
                             </div>
                         </div>
                     
