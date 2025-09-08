@@ -21,6 +21,20 @@ const loadCategory = () => {
     })
 }
 
+//spinner
+
+const manageSpinner = (status) =>{
+    if(status == true){
+        getElement('spinner').classList.remove('hidden')
+        getElement('plant-container').classList.add('hidden')
+    }
+    else{
+        getElement('plant-container').classList.remove('hidden')
+        getElement('spinner').classList.add('hidden')
+    }
+}
+
+
 //static li
 
 const staticLi = document.createElement('li')
@@ -76,6 +90,7 @@ const showCategory = (categories) => {
 const plantsByCategory = getElement('plant-container')
 
 const loadPlantsByCategory = (categoryId) => {
+    manageSpinner(true)
     fetch(`https://openapi.programming-hero.com/api/category/${categoryId}`)
     .then(res => res.json())
     .then(data => {
@@ -133,12 +148,14 @@ const showPlantByCategory = (plants) =>{
                     </div>
         `;
     });
+    manageSpinner(false)
 }
 
 //cart details
 let carts = []
 
 const cartContainer = getElement('cart-container');
+const cartTotal = getElement('total-cart')
 
 plantsByCategory.addEventListener('click', (e)=>{
     if(e.target.innerText === 'Add to Card'){
@@ -179,6 +196,12 @@ const showCarts = (carts) => {
                     </div>
         `
     });
+
+    const total = carts.reduce((sum, cart) => {
+        const priceNum = parseFloat(cart.price.replace('৳','')) || 0;
+        return sum + priceNum;
+    }, 0)
+    cartTotal.textContent = `Total: ৳${total}`;
 }
 //problem not solved
 const handleDeleteCart = (cartId) => {

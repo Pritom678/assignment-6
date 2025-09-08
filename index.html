@@ -74,6 +74,8 @@
         </section>
     </header>
     <main>
+
+        
         <!-- functionality js section -->
         <section class=" bg-[#DCFCE7]">
             <div class="grid grid-cols-7 max-w-7xl mx-auto px-5 py-12">
@@ -83,6 +85,13 @@
                         
                     </ul>
                 </div>
+
+                <!-- spinner -->
+
+                <div id="spinner" class="flex justify-center items-center p-10 bg-[#DCFCE7] hidden">
+                <span class="loading loading-spinner loading-xl"></span>
+                </div>
+
                 <div id="plant-container" class="col-span-3 md:col-span-5 grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-2 p-4">
                 </div>
                 <div class="col-span-2 md:col-span-1 p-2 bg-white rounded-lg">
@@ -90,6 +99,7 @@
                     <div id="cart-container">
 
                     </div>
+                    <div id="total-cart" class="mt-4 font-bold text-lg">Total: ৳0</div>
                 </div>
             </div>
         </section>
